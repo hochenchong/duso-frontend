@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <a-avatar :size="64" class="split-line" :src="logo"/>
+    <a-avatar :size="64" class="split-line" :src="logo" />
 
     <a-input-search v-model:value="searchParams.text" placeholder="请输入搜索的内容" enter-button="搜索" size="large"
       @search="onSearch" />
@@ -26,6 +26,11 @@ import PictureList from '../components/PictureList.vue';
 import UserList from '../components/UserList.vue';
 import PostList from '../components/PostList.vue';
 import { useRoute, useRouter } from 'vue-router';
+import myAxios from '../plugins/myAxios'
+
+myAxios.post("/post/list/page/vo", {}).then((res) => {
+  console.log(res);
+});
 
 const router = useRouter();
 const route = useRoute();
@@ -64,7 +69,7 @@ const onTabChange = (key: string) => {
 
 <style scoped>
 .split-line {
-  border-top: 1px solid; /* 分割线宽度 */
-  margin: 10px 0; /* 上下外边距 */
+  border-top: 1px solid;
+  margin: 10px 0;
 }
 </style>
